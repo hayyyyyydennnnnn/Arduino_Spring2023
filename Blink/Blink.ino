@@ -39,4 +39,9 @@ void loop() {
   delay(1000);                       // wait for a second
   digitalWrite(12, LOW);    //  turn pin 12 to low so it will turn off 
   delay(1000);                       // wait for a second
+
+  digitalWrite(12, HIGH);   // turn pin 12 to high so it will turn on
+  delay(1500);                       // wait for a second and a half
+  digitalWrite(12, LOW);    //  turn pin 12 to low so it will turn off 
+  delay(2000);                       // wait for two second
 }
