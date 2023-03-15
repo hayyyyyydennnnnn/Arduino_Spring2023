@@ -23,6 +23,8 @@
 
 int ledTen = 10;           // the PWM pin the LED is attached to pin 10
 int ledEleven = 11;           // the PWM pin the LED is attached to pin 11
+
+
 int brightness = 0;    // how bright the LED is
 int fadeAmount = 5;    // how many points to fade the LED by
 
@@ -35,17 +37,36 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
-  // set the brightness of pin 10:
-  analogWrite(ledTen, brightness);  
-    analogWrite(ledEleven, brightness);
-
-  // change the brightness for next time through the loop:
-  brightness = brightness + fadeAmount;
-
-  // reverse the direction of the fading at the ends of the fade:
-  if (brightness <= 0 || brightness >= 255) {
-    fadeAmount = -fadeAmount;
+  // fade in from min to max in increments of 5 points:
+  for (int fadeValue = 0 ; fadeValue <= 255; fadeValue = fadeValue+5) {
+    // sets the value (range from 0 to 255):
+    analogWrite(ledTen, fadeValue);
+    // wait for 30 milliseconds to see the dimming effect
+    delay(4);
   }
-  // wait for 30 milliseconds to see the dimming effect
-  delay(30);
+
+  // fade out from max to min in increments of 5 points:
+  for (int fadeValue = 255 ; fadeValue >= 0; fadeValue = fadeValue-5) {
+    // sets the value (range from 0 to 255):
+    analogWrite(ledTen, fadeValue);
+    // wait for 30 milliseconds to see the dimming effect
+    delay(4);
+  }
+
+  // fade in from min to max in increments of 5 points:
+  for (int fadeValue = 0 ; fadeValue <= 255; fadeValue = fadeValue+5) {
+    // sets the value (range from 0 to 255):
+    analogWrite(ledEleven, fadeValue);
+    // wait for 30 milliseconds to see the dimming effect
+    delay(4);
+  }
+
+  // fade out from max to min in increments of 5 points:
+  for (int fadeValue = 255 ; fadeValue >= 0; fadeValue = fadeValue-5) {
+    // sets the value (range from 0 to 255):
+    analogWrite(ledEleven, fadeValue);
+    // wait for 30 milliseconds to see the dimming effect
+  delay(4);
+  }
 }
+  
